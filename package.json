@@ -1,0 +1,33 @@
+{
+  "name": "rabbithole",
+  "version": "3.1.0",
+  "description": "Explore music through real, open credits from MusicBrainz: artists, records, producers, and featured performers.",
+  "main": "server/index.js",
+  "type": "commonjs",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": "22.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JordanEvolved/RabbitHole.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JordanEvolved/RabbitHole/issues"
+  },
+  "homepage": "https://github.com/JordanEvolved/RabbitHole#readme",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "featured": "node scripts/generate-featured.js",
+    "test": "node --test tests/*.test.js",
+    "check": "node --check server/index.js && node --check server/services/graphBuilder.js && node --check server/services/artistInfo.js && node --check server/services/similar.js && node --check server/services/producerRecommendations.js && node --check client/graph.js && node --check api/index.js && node --check scripts/build-vercel.js && node --check client/icons.js",
+    "build": "node scripts/build-vercel.js"
+  },
+  "dependencies": {
+    "cytoscape": "^3.34.3",
+    "dotenv": "^18.0.6",
+    "express": "^5.2.1"
+  }
+}
