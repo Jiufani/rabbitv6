@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>RabbitHole — Every artist is a way in</title>
+ <meta name="description" content="Follow the music. Explore artists, albums, producers, and featured artists in an interactive map built from open MusicBrainz credits.">
+ <meta name="theme-color" content="#f6f5ee">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <link rel="preconnect" href="https://api.fontshare.com">
+ <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+ <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="style.css">
+ <script defer src="vendor/cytoscape.min.js"></script><script defer src="icons.js"></script><script defer src="graph.js"></script>
+</head>
+<body class="home-mode">
+ <a class="skip-link" href="#workspace">Skip to content</a>
+ <header class="app-header">
+  <button class="brand" id="home" title="Back to home" aria-label="RabbitHole home">
+   <svg class="brand-mark" aria-label="RabbitHole" viewBox="0 0 40 40" fill="none"><path d="M29 11C22 5 10 11 10 21c0 9 12 14 19 7 7-7 0-16-7-14-6 2-6 11-1 12 4 1 7-4 3-6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><path d="M13 12 11 4M18 9 20 2" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg>
+   <span>rabbit<span class="brand-heavy">hole</span><span class="brand-period">.</span></span>
+  </button>
+  <form class="search-form" id="search-form" role="search">
+   <span data-icon="Search"></span><label class="sr-only" for="artist-search">Search for a music artist</label>
+   <input id="artist-search" type="search" placeholder="Start with an artist you love..." maxlength="100" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list">
+   <kbd class="search-key">/</kbd><button type="submit" class="sr-only">Search</button>
+   <div class="search-results" id="search-results" role="listbox" hidden></div>
+  </form>
+  <nav class="top-nav" aria-label="Main navigation">
+   <button id="surprise" class="nav-button"><span data-icon="Shuffle"></span><span>Surprise me</span></button>
+   <button id="help" class="nav-button help-button" aria-label="How it works"><span class="help-label">How it works</span><span class="help-icon" data-icon="Info"></span></button>
+   <button id="theme-toggle" class="icon-button" aria-label="Switch color theme" title="Switch color theme"><span data-icon="Moon"></span></button>
+  </nav>
+ </header>
+ <main class="home-page" id="home-page" tabindex="-1">
+  <div class="home-inner">
+   <section class="home-hero" aria-labelledby="home-title">
+    <div class="hero-copy"><div class="eyebrow"><span class="live-dot"></span> MUSIC IS BETTER WHEN YOU GET LOST</div><h1 id="home-title">Follow the music.<br>Find your <span>next favorite.</span></h1><p>Start with an artist you love. Discover the people behind their records — and someone new to fall for.</p><div class="hero-search-slot" id="hero-search-slot"></div><div class="hero-actions"><button class="text-button" id="home-surprise"><span data-icon="Shuffle"></span>Or take me somewhere new</button></div><div class="hero-footnote"><span data-icon="Headphones"></span> Real credits. New connections. No account needed.</div></div>
+    <div class="hero-record" aria-label="A record waiting to be explored"><div class="record-sticker"><span data-icon="Sparkles"></span> A GOOD PLACE TO START</div><div class="vinyl"><div class="vinyl-label"><span>RABBIT<br>HOLE</span><i></i><small>SIDE A · DISCOVERY</small></div></div><button class="hero-sleeve" id="hero-featured" aria-label="Explore Frank Ocean"><div class="hero-sleeve-photo" id="hero-sleeve-photo"></div><div class="hero-sleeve-info"><span class="eyebrow">THE WORLD BEHIND THE MUSIC</span><strong id="hero-sleeve-name">Frank Ocean</strong><span>Open the rabbit hole <span data-icon="ArrowRight"></span></span></div></button><span class="record-caption">Every record has a story. Find yours.</span></div>
+   </section>
+   <section class="home-recent" id="home-recent-section" hidden><div class="home-section-heading"><div><div class="eyebrow">PICK UP WHERE YOU LEFT OFF</div><h2>Your recent rabbit holes</h2></div><button id="resume-map" class="text-button" hidden>Back to your map <span data-icon="ArrowRight"></span></button></div><div id="home-recent" class="recent-chips"></div></section>
+   <section class="home-featured"><div class="home-section-heading"><div><div class="eyebrow">A FEW WAYS IN</div><h2>Whose world will you explore?</h2></div><span class="home-section-note">Ready-made maps. Endless possibilities.</span></div><div class="home-filters" role="group" aria-label="Filter featured maps"><button data-home-filter="all" class="active" aria-pressed="true">All rabbit holes</button><button data-home-filter="hip hop" aria-pressed="false">Hip-hop &amp; R&amp;B</button><button data-home-filter="electronic" aria-pressed="false">Electronic</button><button data-home-filter="rock" aria-pressed="false">Rock &amp; alternative</button></div><div id="home-featured" class="home-featured-grid" aria-live="polite"><p class="home-loading">Opening the record collection...</p></div></section>
+   <section class="home-producers"><div class="producer-intro"><div class="eyebrow">FOR THE PEOPLE BEHIND THE SOUND</div><h2>Love the production?<br>Follow the producer.</h2><p>From the credits to your next discovery. Find producers who have worked on the same records or with the same artists.</p></div><div class="producer-starters"><button data-start-producer="149f91ef-1287-46da-9a8e-87fee02f1471" data-name="Pharrell Williams"><span class="producer-monogram">PW</span><span><strong>Pharrell Williams</strong><small>Find producers like them</small></span><span data-icon="ArrowRight"></span></button><button data-start-producer="59db3d82-86ea-451f-881f-dffc8ec387c9" data-name="Metro Boomin"><span class="producer-monogram">MB</span><span><strong>Metro Boomin</strong><small>Find producers like them</small></span><span data-icon="ArrowRight"></span></button><button data-start-producer="9032140b-c6ba-448d-8f05-5ac16e3aa165" data-name="Sounwave"><span class="producer-monogram">S</span><span><strong>Sounwave</strong><small>Find producers like them</small></span><span data-icon="ArrowRight"></span></button></div></section>
+   <section class="home-how"><div><span class="step-number">01</span><h3>Start with a favorite.</h3><p>Search for an artist or producer. One name opens a whole world.</p></div><div><span class="step-number">02</span><h3>Follow the credits.</h3><p>Explore records, tracklists and the people who made them.</p></div><div><span class="step-number">03</span><h3>Find your next favorite.</h3><p>Choose “I like this” for artist or producer recommendations, with a reason for every match.</p></div></section>
+   <footer class="home-footer"><span>Made for curious ears.</span><div><a href="https://musicbrainz.org/" target="_blank" rel="noopener noreferrer">MusicBrainz credits <span data-icon="ExternalLink"></span></a><a href="https://listenbrainz.org/" target="_blank" rel="noopener noreferrer">ListenBrainz discovery <span data-icon="ExternalLink"></span></a></div></footer>
+  </div>
+ </main>
+ <main class="app-body" id="workspace" tabindex="-1" hidden>
+  <aside class="sidebar" aria-label="Music exploration">
+   <div class="sidebar-scroll">
+    <div class="intro"><div class="eyebrow">EVERY ARTIST IS A WAY IN</div><h1>Follow the music.<br>Find the unexpected.</h1><p>Albums, collaborators, and the people behind your favorite records.</p></div>
+    <section class="root-card" id="root-card" aria-label="Your starting artist">
+     <div class="root-photo" id="root-photo"><div class="skeleton"></div><div class="root-photo-label"><span class="live-dot"></span>YOUR STARTING POINT</div></div>
+     <div class="root-card-body"><h2 id="root-name">Loading the map...</h2><p id="root-description">Putting the first record on.</p></div>
+    </section>
+    <div class="stats" aria-label="Map statistics"><div><strong id="people-count">—</strong><span>people</span></div><div><strong id="album-count">—</strong><span>records</span></div><div><strong id="edge-count">—</strong><span>connections</span></div></div>
+    <button class="sidebar-recommend secondary-button" id="root-recommend"><span data-icon="Sparkles"></span>Find someone new</button>
+    <section class="follow-section"><div class="section-heading"><h2>Follow a connection</h2><span data-icon="Waypoints"></span></div><div id="connection-picks" class="connection-picks"><div class="skeleton pick-skeleton"></div><div class="skeleton pick-skeleton"></div></div></section>
+    <section class="featured-section"><div class="section-heading"><h2>A few other ways in</h2><span data-icon="Compass"></span></div><div id="featured-picks" class="featured-picks"></div></section>
+    <div class="sidebar-note"><span data-icon="Info"></span><p>Map lines are real record credits. Use “I like this” to discover artists or producers you might enjoy.</p></div>
+   </div>
+   <footer class="sidebar-footer"><span>Made for curious ears.</span><a href="https://musicbrainz.org/" target="_blank" rel="noopener noreferrer">Data by MusicBrainz <span data-icon="ExternalLink"></span></a></footer>
+  </aside>
+  <section class="map-workspace" aria-label="Artist connection explorer">
+   <div class="map-toolbar">
+    <div class="map-breadcrumb"><span class="breadcrumb-mark" data-icon="Waypoints"></span><span id="breadcrumb-root">Your music map</span><span class="breadcrumb-slash">/</span><span class="breadcrumb-sub">Connections</span></div>
+    <div class="map-actions"><button class="rec-pill" id="map-recommend" title="Find artists or producers you might like" aria-label="I like this. Find artists or producers you might like"><span data-icon="Sparkles"></span><span>I like this</span></button><div class="view-switch" aria-label="View"><button id="map-view" class="active" aria-pressed="true"><span data-icon="Waypoints"></span>Map</button><button id="list-view" aria-pressed="false"><span data-icon="Layers"></span>List</button></div><button class="icon-button" id="copy-link" title="Copy a link to this map" aria-label="Copy a link to this map"><span data-icon="Link"></span></button><button class="icon-button" id="export" title="Export this map" aria-label="Export this map"><span data-icon="Download"></span></button><div class="export-menu" id="export-menu" hidden><h3>Take it with you</h3><button id="export-png"><span data-icon="Download"></span>Save map as PNG</button><button id="export-json"><span data-icon="Download"></span>Download graph data</button></div></div>
+   </div>
+   <div class="map-stage" id="map-stage">
+    <div id="cy" role="img" aria-label="Interactive artist connection map. Use the List view for keyboard access to every artist and record."></div>
+    <div class="map-caption"><span class="caption-line"></span><span id="map-caption">Click a person or record. Follow the credits.</span></div>
+    <div id="map-status" class="map-status" role="status" aria-live="polite"><span class="status-spinner"></span><span id="status-text">Opening your first rabbit hole...</span><button id="cancel-stream" hidden aria-label="Stop exploring" title="Stop exploring"><span data-icon="X"></span></button></div>
+    <div class="empty-map" id="empty-map" hidden><span data-icon="Disc3" data-size="56"></span><h2 id="empty-title">Your next discovery starts here.</h2><p id="empty-message">Search for an artist, or pick a featured map.</p><div class="empty-actions"><button class="primary-button" id="empty-action">Explore a featured map <span data-icon="ArrowRight"></span></button><button class="secondary-button" id="empty-retry" hidden>Try again</button></div></div>
+    <div class="legend" aria-label="Filter the map"><span class="legend-heading">ON THE MAP</span><button data-category="artist" aria-pressed="true"><i class="dot artist-dot"></i>Artists</button><button data-category="album" aria-pressed="true"><i class="dot album-dot"></i>Records</button><button data-category="producer" aria-pressed="true"><i class="dot producer-dot"></i>Producers</button><button data-category="featured" aria-pressed="true"><i class="dot featured-dot"></i>Featured</button></div>
+    <div class="canvas-controls" aria-label="Map controls"><button id="zoom-in" title="Zoom in" aria-label="Zoom in"><span data-icon="Plus"></span></button><button id="zoom-out" title="Zoom out" aria-label="Zoom out"><span data-icon="Minus"></span></button><span class="control-divider"></span><button id="fit-map" title="Fit the map (F)" aria-label="Fit the map"><span data-icon="Maximize"></span></button><button id="relayout" title="Rearrange the map" aria-label="Rearrange the map"><span data-icon="RotateCcw"></span></button></div>
+        <div class="map-attribution" id="map-attribution">MusicBrainz credits</div>
+    <div id="graph-list" class="graph-list" hidden><div class="list-header"><h2>Everyone on the map</h2><p>A keyboard-friendly view of your connections.</p><label class="sr-only" for="list-search">Find on this map</label><input id="list-search" placeholder="Find a person or record..." type="search"></div><div id="list-rows"></div></div>
+    <aside class="detail-panel" id="detail-panel" hidden aria-label="Selected connection"><div class="detail-header"><span class="eyebrow" id="detail-category">ARTIST</span><button class="icon-button" id="close-detail" aria-label="Close details"><span data-icon="X"></span></button></div><div id="detail-content"></div></aside>
+   </div>
+  </section>
+ </main>
+ <dialog class="recommend-dialog" id="recommend-dialog" aria-labelledby="recommend-title"><div class="dialog-top"><span class="eyebrow"><span data-icon="Sparkles"></span> YOUR NEXT DISCOVERY</span><button class="icon-button" id="close-recommend" aria-label="Close recommendations"><span data-icon="X"></span></button></div><h2 id="recommend-title">If you like this artist…</h2><div id="recommend-trail" class="recommend-trail"></div><p id="recommend-subtitle" class="recommend-subtitle">A few people you might want to hear next.</p><div class="recommend-tabs" role="group" aria-label="Recommendation type"><button id="recommend-artists" data-recommend-mode="artist" aria-pressed="true" class="active"><span data-icon="Mic2"></span>Artists</button><button id="recommend-producers" data-recommend-mode="producer" aria-pressed="false"><span data-icon="SlidersVertical"></span>Producers</button></div><div id="recommend-results" class="recommend-results" aria-live="polite"></div><div id="recommend-note" class="recommend-note"></div></dialog>
+ <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+ <dialog id="help-dialog"><div class="dialog-top"><span class="eyebrow">A FIELD GUIDE TO GETTING LOST</span><button class="icon-button" id="close-help" aria-label="Close guide"><span data-icon="X"></span></button></div><h2>One record can lead anywhere.</h2><p>RabbitHole maps the artists, producers, and featured performers credited on records in MusicBrainz, the open music encyclopedia.</p><ol class="guide-steps"><li><span>01</span><div><h3>Start with someone you love.</h3><p>Search for an artist, then choose the right result. Or open one of the featured maps.</p></div></li><li><span>02</span><div><h3>Follow a connection.</h3><p>Click any person or record to see their credits and a path back to your starting artist.</p></div></li><li><span>03</span><div><h3>Go down the rabbit hole.</h3><p>Choose “Dive deeper” to add more records and collaborators to your map. Drag nodes, zoom, and filter as you explore.</p></div></li></ol><div class="guide-note"><span data-icon="Info"></span><p>Credits vary between editions. We select notable records and show a limited set of production and featuring credits, not a complete discography. Choose “I like this” on a person to find new artists or producers. Artist recommendations use ListenBrainz listening patterns; producer recommendations use overlapping MusicBrainz production credits. Featured maps are cached snapshots; live dives read MusicBrainz directly. Cover art comes from the Cover Art Archive and biographies from Wikipedia.</p></div><div class="keyboard-help"><span><kbd>/</kbd> Search</span><span><kbd>F</kbd> Fit map</span><span><kbd>Esc</kbd> Close panels</span></div><button class="primary-button" id="help-done">Follow the music <span data-icon="ArrowRight"></span></button></dialog>
+ <noscript><div class="noscript">RabbitHole needs JavaScript to draw its interactive map. Please enable JavaScript and reload.</div></noscript>
+</body>
+</html>
