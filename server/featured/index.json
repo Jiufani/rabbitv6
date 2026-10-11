@@ -1,0 +1,122 @@
+[
+ {
+  "slug": "kendrick-lamar",
+  "mbid": "381086ea-f511-4aba-bdf9-71c753dc5077",
+  "name": "Kendrick Lamar",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/KendrickSZASPurs230725-144_%28cropped%29_desaturated.jpg/330px-KendrickSZASPurs230725-144_%28cropped%29_desaturated.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "genres": [
+   "hip hop",
+   "conscious hip hop",
+   "jazz rap",
+   "west coast hip hop",
+   "hardcore hip hop"
+  ],
+  "albums": 8,
+  "people": 75
+ },
+ {
+  "slug": "frank-ocean",
+  "mbid": "e520459c-dff4-491d-a6e4-c97be35e0044",
+  "name": "Frank Ocean",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Frank_Ocean_2022_Blonded.jpg/330px-Frank_Ocean_2022_Blonded.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "genres": [
+   "contemporary r&b",
+   "pop",
+   "r&b",
+   "alternative r&b",
+   "hip hop"
+  ],
+  "albums": 8,
+  "people": 68
+ },
+ {
+  "slug": "tyler-the-creator",
+  "mbid": "f6beac20-5dfe-4d1f-ae02-0b0a740aafd6",
+  "name": "Tyler, The Creator",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Tyler_The_Creator_Toronto_2025_%28cropped%29.jpg/330px-Tyler_The_Creator_Toronto_2025_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "genres": [
+   "hip hop",
+   "hardcore hip hop",
+   "horrorcore",
+   "alternative hip hop",
+   "west coast hip hop"
+  ],
+  "albums": 8,
+  "people": 51
+ },
+ {
+  "slug": "daft-punk",
+  "mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56",
+  "name": "Daft Punk",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Daft_Punk_in_2013_2-_centered.jpg/330px-Daft_Punk_in_2013_2-_centered.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "genres": [
+   "electronic",
+   "house",
+   "french house",
+   "dance",
+   "disco"
+  ],
+  "albums": 7,
+  "people": 21
+ },
+ {
+  "slug": "fleetwood-mac",
+  "mbid": "bd13909f-1c29-4c27-a874-d4aaf27c5b1a",
+  "name": "Fleetwood Mac",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Fleetwood_Mac_Billboard_1977.jpg/330px-Fleetwood_Mac_Billboard_1977.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "genres": [
+   "rock",
+   "soft rock",
+   "blues rock",
+   "pop rock",
+   "blues"
+  ],
+  "albums": 8,
+  "people": 26
+ },
+ {
+  "slug": "beyonce",
+  "mbid": "859d0860-d480-4efd-970c-c05d5f1776b8",
+  "name": "Beyoncé",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Beyonc%C3%A9_-_Tottenham_Hotspur_Stadium_-_1st_June_2023_%2810_of_118%29_%2852946364598%29_%28best_crop%29.jpg/330px-Beyonc%C3%A9_-_Tottenham_Hotspur_Stadium_-_1st_June_2023_%2810_of_118%29_%2852946364598%29_%28best_crop%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "genres": [
+   "pop",
+   "r&b",
+   "contemporary r&b",
+   "pop rap",
+   "soul"
+  ],
+  "albums": 8,
+  "people": 84
+ },
+ {
+  "slug": "bjork",
+  "mbid": "87c5dedd-371d-4a53-9f7f-80522fb7f3cb",
+  "name": "Björk",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Bjork_Orkestral_Paris_%28cropped%29.png/330px-Bjork_Orkestral_Paris_%28cropped%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "genres": [
+   "experimental",
+   "electronic",
+   "art pop",
+   "trip hop",
+   "progressive pop"
+  ],
+  "albums": 7,
+  "people": 35
+ },
+ {
+  "slug": "radiohead",
+  "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+  "name": "Radiohead",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/RadioheadO2211125_composite.jpg/330px-RadioheadO2211125_composite.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "genres": [
+   "alternative rock",
+   "art rock",
+   "rock",
+   "electronic",
+   "experimental rock"
+  ],
+  "albums": 8,
+  "people": 17
+ }
+]
